@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Sobhi Hassan — Career Assessment & Portfolio Report</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root{
+    --ink:#0B0E11;
+    --panel-dark:#12161C;
+    --paper:#EDEFEA;
+    --paper-card:#F8F9F6;
+    --line:#D6D9D2;
+    --text:#14181C;
+    --muted:#5B6570;
+    --muted-light:#8B939C;
+    --critical:#E5484D;
+    --verified:#2FA875;
+    --info:#C97C1F;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--critical); color:#fff;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:#DEE3E7;
+    padding:0 0 64px 0;
+  }
+  .term-wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:56px 24px 0;
+  }
+  .term{
+    background:#0F1318;
+    border:1px solid #23282F;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 16px;
+    background:#171C22;
+    border-bottom:1px solid #23282F;
+  }
+  .dot{width:10px; height:10px; border-radius:50%;}
+  .dot.r{background:#E5484D;} .dot.y{background:#D98E2B;} .dot.g{background:#2FA875;}
+  .term-title{
+    margin-left:10px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--muted-light);
+  }
+  .term-body{
+    padding:22px 24px 26px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    min-height:190px;
+  }
+  .term-body .ln{ white-space:pre-wrap; margin-bottom: 6px; }
+  .term-body .prompt{ color:#5FD3A7; }
+  .term-body .out{ color:#C4CAD1; }
+  .term-body .lbl{ color:#6E90D9; }
+  .cursor{
+    display:inline-block; width:8px; height:15px; background:#5FD3A7;
+    vertical-align:-2px; animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{opacity:0;} }
+
+  .cover{
+    max-width:920px;
+    margin:0 auto;
+    padding:44px 24px 0;
+  }
+  .badges-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:22px;}
+  .badge{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.02em;
+    padding:5px 10px;
+    border-radius:4px;
+    border:1px solid;
+  }
+  .badge.conf{ color:#E5484D; border-color:#5A2426; background:rgba(229,72,77,0.08);}
+  .badge.active{ color:#2FA875; border-color:#1E4A38; background:rgba(47,168,117,0.08);}
+
+  .cover h1{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(30px, 5vw, 50px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    color:#F3F5F7;
+    max-width:18ch;
+  }
+  .cover .subtitle{
+    margin-top:14px;
+    font-size:16px;
+    color:var(--muted-light);
+    max-width:56ch;
+  }
+  .cover .subtitle strong{
+    color:#F3F5F7;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    text-decoration-color:#3A424B;
+  }
+
+  /* Social Links & CV Action */
+  .hero-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:24px;
+  }
+  .btn-action{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:6px;
+    text-decoration:none;
+    transition:all 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--verified);
+    color:#08130E;
+    border:1px solid var(--verified);
+  }
+  .btn-primary:hover{ background:#289366; }
+  .btn-secondary{
+    background:rgba(255,255,255,0.05);
+    color:#DEE3E7;
+    border:1px solid #2A3038;
+  }
+  .btn-secondary:hover{ background:rgba(255,255,255,0.1); border-color:#4A525D; }
+
+  .cover-stats{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    border-top:1px solid #23282F;
+  }
+  .stat{
+    padding:20px 4px 0;
+    border-right:1px solid #23282F;
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:var(--mono);
+    font-size:26px;
+    font-weight:700;
+    color:#F3F5F7;
+  }
+  .stat .lab{
+    font-size:12.5px;
+    color:var(--muted-light);
+    margin-top:4px;
+  }
+
+  /* ---------- AVATAR ---------- */
+  .avatar-wrap{
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .avatar{
+    width:96px; height:96px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid #2A3038;
+    box-shadow:0 0 0 5px #171C22;
+    background:#171C22;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#5FD3A7;
+    font-size:36px;
+  }
+  .avatar img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  /* ---------- NAV ---------- */
+  .subnav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,239,234,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .subnav-inner{
+    max-width:920px; margin:0 auto; padding:0 24px;
+    display:flex; gap:26px; overflow-x:auto;
+  }
+  .subnav a{
+    display:inline-block;
+    padding:14px 0;
+    font-size:13.5px;
+    color:var(--muted);
+    text-decoration:none;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+  }
+  .subnav a:hover{ color:var(--text); }
+  .subnav a.active{ color:var(--text); border-bottom-color:var(--critical); font-weight:600; }
+
+  .section{
+    max-width:920px;
+    margin:0 auto;
+    padding:72px 24px;
+    border-bottom:1px solid var(--line);
+  }
+  .section:last-of-type{border-bottom:none;}
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .sec-num{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--critical);
+    font-weight:600;
+  }
+  .sec-head h2{
+    font-family:var(--mono);
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .lede{
+    font-size:17px;
+    color:var(--text);
+    max-width:62ch;
+    margin-bottom:18px;
+  }
+  .lede + .lede{color:var(--muted);}
+
+  /* scope card */
+  .scope-card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:26px 28px;
+  }
+  .scope-row{
+    display:flex; justify-content:space-between; gap:20px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .scope-row:last-child{border-bottom:none;}
+  .scope-row .k{color:var(--muted); font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em; padding-top:2px;}
+  .scope-row .v{text-align:right; max-width:60%; font-weight:500;}
+  .tag-row{margin-top:18px; display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:var(--mono); font-size:12px;
+    padding:5px 10px; border:1px solid var(--line); border-radius:20px;
+    color:var(--muted);
+    background:rgba(0,0,0,0.02);
+  }
+
+  .method-entry{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    padding:24px 0;
+    border-top:1px solid var(--line);
+  }
+  .method-entry:first-of-type{border-top:none;}
+  .method-date{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--muted);
+    padding-top:3px;
+  }
+  .method-title{font-weight:600; font-size:16px; margin-bottom:6px;}
+  .method-desc{color:var(--muted); font-size:14.5px; max-width:58ch;}
+  .course-list{margin-top:36px;}
+  .course-list h3{
+    font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--muted); margin-bottom:16px;
+  }
+  .course-item{
+    padding:16px 0; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:16px; font-size:14.5px;
+  }
+  .course-item .cname{font-weight:500;}
+  .course-item .cdate{font-family:var(--mono); font-size:12px; color:var(--muted); white-space:nowrap; padding-top:2px;}
+
+  /* findings */
+  .finding-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .finding{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--verified);
+    border-radius:6px;
+    padding:18px 20px;
+    cursor:default;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .finding:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -14px rgba(0,0,0,0.25); }
+  .finding-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px;
+  }
+  .finding-id{font-family:var(--mono); font-size:11px; color:var(--muted-light);}
+  .finding-badge{
+    font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.03em;
+    padding:3px 8px; border-radius:3px;
+  }
+  .finding-badge.core{ background:rgba(47,168,117,0.12); color:var(--verified); }
+  .finding-badge.prof{ background:rgba(201,124,31,0.12); color:var(--info); }
+  .finding h4{font-size:15.5px; margin-bottom:6px;}
+  .finding p{font-size:13.5px; color:var(--muted);}
+
+  .softskills{margin-top:34px;}
+  .softskills h3{
+    font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--muted); margin-bottom:14px;
+  }
+  .soft-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .soft-tags span{
+    font-size:13px; padding:6px 12px; background:var(--paper-card);
+    border:1px solid var(--line); border-radius:5px; color:var(--text);
+  }
+
+  .timeline{position:relative; padding-left:26px;}
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1.5px; background:var(--line);
+  }
+  .t-item{position:relative; padding-bottom:32px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:''; position:absolute; left:-26px; top:4px; width:9px; height:9px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--line);
+  }
+  .t-date{font-family:var(--mono); font-size:12px; color:var(--critical); margin-bottom:4px;}
+  .t-title{font-weight:600; font-size:15.5px; margin-bottom:3px;}
+  .t-sub{font-size:13.5px; color:var(--muted);}
+
+  /* languages */
+  .lang-row{display:flex; gap:40px; flex-wrap:wrap; margin-top:16px;}
+  .lang-item{min-width:220px; flex:1;}
+  .lang-name{font-weight:600; font-size:15px; margin-bottom:6px; display:flex; justify-content:space-between;}
+  .lang-name small{font-family:var(--mono); font-weight:400; color:var(--muted); font-size:12px;}
+  .lang-bar{height:6px; background:var(--line); border-radius:3px; overflow:hidden;}
+  .lang-fill{height:100%; background:var(--verified); border-radius:3px;}
+
+  /* contact / CTA */
+  .cta{
+    background:var(--ink);
+    color:#DEE3E7;
+    padding:80px 24px;
+  }
+  .cta-inner{max-width:920px; margin:0 auto;}
+  .cta .sec-num{color:var(--critical);}
+  .cta h2{
+    font-family:var(--mono); font-size:26px; font-weight:600; color:#F3F5F7; margin-bottom:14px;
+  }
+  .cta p.lede{color:#B7BEC5; max-width:56ch;}
+  .contact-grid{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+  }
+  .contact-card{
+    border:1px solid #262C33;
+    border-radius:8px;
+    padding:18px 20px;
+    text-decoration:none;
+    transition:border-color .15s ease, background .15s ease;
+    cursor:pointer;
+  }
+  .contact-card:hover{ border-color:#3A424B; background:#171C22; }
+  .contact-card .clabel{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted-light);
+    margin-bottom:8px;
+  }
+  .contact-card .cval{font-size:14.5px; color:#F0F2F4; word-break:break-word;}
+
+  footer{
+    background:var(--ink); color:var(--muted-light);
+    border-top:1px solid #23282F;
+    padding:22px 24px;
+    font-family:var(--mono); font-size:11.5px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    max-width:920px; margin:0 auto;
+  }
+
+  .ai-launcher{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:80;
+    width:54px; height:54px;
+    border-radius:50%;
+    background:var(--ink);
+    border:1px solid #2A3038;
+    color:#5FD3A7;
+    font-family:var(--mono);
+    font-size:16px;
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    box-shadow:0 12px 28px -10px rgba(0,0,0,0.5);
+    transition:transform .15s ease;
+  }
+  .ai-launcher:hover{ transform:scale(1.06); }
+  .ai-launcher .ping{
+    position:absolute; top:-3px; right:-3px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--verified);
+    border:2px solid var(--ink);
+  }
+
+  .ai-panel{
+    position:fixed;
+    right:22px; bottom:88px;
+    z-index:80;
+    width:350px;
+    max-width:calc(100vw - 40px);
+    height:460px;
+    max-height:calc(100vh - 130px);
+    background:#0F1318;
+    border:1px solid #23282F;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+    opacity:0; transform:translateY(12px) scale(0.98);
+    pointer-events:none;
+    transition:opacity .16s ease, transform .16s ease;
+  }
+  .ai-panel.open{
+    opacity:1; transform:translateY(0) scale(1);
+    pointer-events:auto;
+  }
+  .ai-head{
+    padding:12px 14px;
+    background:#171C22;
+    border-bottom:1px solid #23282F;
+    display:flex; align-items:center; gap:10px;
+  }
+  .ai-head .dot{width:8px; height:8px; border-radius:50%; background:var(--verified);}
+  .ai-head .t{
+    font-family:var(--mono); font-size:12.5px; color:#DEE3E7; font-weight:600;
+  }
+  .ai-head .sub{ font-size:10.5px; color:var(--muted-light); }
+  .ai-close{
+    margin-left:auto; cursor:pointer; color:var(--muted-light);
+    font-family:var(--mono); font-size:14px; padding:2px 6px;
+  }
+  .ai-close:hover{ color:#DEE3E7; }
+
+  .ai-body{
+    flex:1; overflow-y:auto;
+    padding:14px;
+    display:flex; flex-direction:column; gap:10px;
+    font-size:13px;
+  }
+  .ai-msg{ max-width:88%; line-height:1.5; }
+  .ai-msg.bot{
+    align-self:flex-start;
+    background:#171C22;
+    border:1px solid #23282F;
+    color:#D8DEE4;
+    padding:9px 12px;
+    border-radius:8px 8px 8px 2px;
+  }
+  .ai-msg.user{
+    align-self:flex-end;
+    background:var(--verified);
+    color:#08130E;
+    padding:9px 12px;
+    border-radius:8px 8px 2px 8px;
+    font-weight:500;
+  }
+  .ai-chips{
+    display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 12px;
+  }
+  .ai-chip{
+    font-family:var(--mono); font-size:11px;
+    color:#9FE8C8; background:rgba(47,168,117,0.08);
+    border:1px solid #1E4A38;
+    padding:5px 9px; border-radius:20px;
+    cursor:pointer;
+  }
+  .ai-chip:hover{ background:rgba(47,168,117,0.16); }
+
+  .ai-inputrow{
+    display:flex; gap:8px;
+    padding:10px 12px;
+    border-top:1px solid #23282F;
+    background:#12161C;
+  }
+  .ai-inputrow input{
+    flex:1;
+    background:#0F1318;
+    border:1px solid #23282F;
+    color:#DEE3E7;
+    font-family:var(--sans);
+    font-size:13px;
+    padding:9px 12px;
+    border-radius:7px;
+    outline:none;
+  }
+  .ai-inputrow input:focus{ border-color:#3A424B; }
+  .ai-send{
+    background:var(--verified);
+    color:#08130E;
+    border:none;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:12px;
+    padding:0 14px;
+    border-radius:7px;
+    cursor:pointer;
+  }
+  .ai-send:hover{ opacity:0.9; }
+
+  @media (max-width:768px){
+    .contact-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (max-width:640px){
+    .cover-stats{grid-template-columns:1fr; }
+    .stat{border-right:none; border-top:1px solid #23282F; padding-top:16px; margin-top:4px;}
+    .stat:first-child{border-top:none; margin-top:0;}
+    .method-entry{grid-template-columns:1fr; gap:6px;}
+    .finding-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .scope-row{flex-direction:column; gap:4px;}
+    .scope-row .v{text-align:left; max-width:100%;}
+  }
+
+  @media (max-width:480px){
+    .ai-panel{ right:16px; left:16px; width:auto; bottom:82px; }
+    .ai-launcher{ right:16px; bottom:16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="term-wrap">
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="term-title">report_ahmed_sobhi_hassan.log</span>
+      </div>
+      <div class="term-body" id="termBody">
+        <div class="ln"><span class="prompt">$</span> whoami</div>
+        <div class="ln"><span class="out">&gt; Ahmed Sobhi Hassan — Bug Hunter / Junior Penetration Tester</span></div>
+        <div class="ln"><span class="prompt">$</span> cat contact.txt</div>
+        <div class="ln"><span class="out">&gt; </span><span class="lbl">location</span> Alexandria, Egypt &nbsp;<span class="lbl">mail</span> ahmedelshabasy30@gmail.com &nbsp;<span class="lbl">tel</span> +20 100 572 8536</div>
+        <div class="ln"><span class="prompt">$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover">
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <img src="https://i.postimg.cc/fRvD9qLx/IMG-2669.jpg" alt="Ahmed Sobhi Hassan" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='IMG-2669.jpg';">
+      </div>
+      <div>
+        <h3 style="font-family:var(--mono); color:#F3F5F7; font-size:18px;">Ahmed Sobhi Hassan</h3>
+        <p style="color:var(--muted-light); font-size:13px; font-family:var(--mono);">&lt;Web Security & Penetration Testing/&gt;</p>
+      </div>
+    </div>
+
+    <div class="badges-row">
+      <span class="badge conf"><i class="fa-solid fa-lock"></i> CONFIDENTIAL ASSESSMENT REPORT</span>
+      <span class="badge active"><i class="fa-solid fa-circle-check"></i> VERIFIED CANDIDATE PROFILE</span>
+    </div>
+
+    <h1>Assessment & Security Career Portfolio</h1>
+    <p class="subtitle">Detailed evaluation of technical skills, security findings methodology, and bug hunting capabilities for <strong>Ahmed Sobhi Hassan</strong>.</p>
+
+    <div class="hero-actions">
+      <a href="mailto:ahmedelshabasy30@gmail.com" class="btn-action btn-primary"><i class="fa-solid fa-paper-plane"></i> Hire / Contact Me</a>
+      <a href="#" onclick="alert('قم بربط رابط ملف السيرة الذاتية PDF الخاص بك هنا'); return false;" class="btn-action btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download CV (PDF)</a>
+      <a href="https://github.com/Shabasy12" target="_blank" rel="noopener" class="btn-action btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/ahmed-elshabasy-8a4aa5365/" target="_blank" rel="noopener" class="btn-action btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </div>
+
+    <div class="cover-stats">
+      <div class="stat">
+        <div class="num">100%</div>
+        <div class="lab">Ethical & Methodology Focused</div>
+      </div>
+      <div class="stat">
+        <div class="num">OWASP</div>
+        <div class="lab">Top 10 Web Vulnerabilities</div>
+      </div>
+      <div class="stat">
+        <div class="num">ALX, EG</div>
+        <div class="lab">Location & Remote Ready</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="subnav">
+  <div class="subnav-inner">
+    <a href="#scope" class="active">01. Candidate Scope</a>
+    <a href="#methodology">02. Methodology & Certs</a>
+    <a href="#findings">03. Technical Findings</a>
+    <a href="#writeups">04. Writeups & Research</a>
+    <a href="#timeline">05. Timeline & Background</a>
+    <a href="#contact">06. Contact Details</a>
+  </div>
+</div>
+
+<section id="scope" class="section">
+  <div class="sec-head">
+    <span class="sec-num">01.</span>
+    <h2>Scope & Target Profile</h2>
+  </div>
+
+  <p class="lede">Ahmed Sobhi Hassan is an enthusiastic Junior Penetration Tester and Bug Hunter driven by a passion for ethical hacking, vulnerability research, and continuous learning.</p>
+  <p class="lede">Specializing in Web Application Security, Reconnaissance, and OWASP Top 10 exploitation techniques, he delivers meticulous vulnerability reports with clear remediation steps.</p>
+
+  <div class="scope-card" style="margin-top:28px;">
+    <div class="scope-row">
+      <span class="k">Candidate Name</span>
+      <span class="v">Ahmed Sobhi Hassan</span>
+    </div>
+    <div class="scope-row">
+      <span class="k">Primary Specialization</span>
+      <span class="v">Junior Penetration Tester / Bug Hunter</span>
+    </div>
+    <div class="scope-row">
+      <span class="k">Geographic Base</span>
+      <span class="v">Alexandria, Egypt</span>
+    </div>
+    <div class="scope-row">
+      <span class="k">Contact Email</span>
+      <span class="v">ahmedelshabasy30@gmail.com</span>
+    </div>
+    <div class="scope-row">
+      <span class="k">Contact Phone</span>
+      <span class="v">+20 100 572 8536</span>
+    </div>
+    <div class="scope-row">
+      <span class="k">Target Security Roles</span>
+      <span class="v">Junior PenTester, SOC Analyst (L1), AppSec Intern</span>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">#BurpSuite</span>
+      <span class="tag">#Nmap</span>
+      <span class="tag">#OWASP_Top_10</span>
+      <span class="tag">#XSS_Exploitation</span>
+      <span class="tag">#SQLi</span>
+      <span class="tag">#IDOR</span>
+      <span class="tag">#Linux_Kali</span>
+      <span class="tag">#Python_Scripting</span>
+    </div>
+  </div>
+</section>
+
+<section id="writeups" class="section">
+  <div class="sec-head">
+    <span class="sec-num">04.</span>
+    <h2>Security Writeups & Case Studies</h2>
+  </div>
+
+  <p class="lede">Demonstrated Proof of Concepts (PoC) and vulnerability analysis from lab environments and bug bounty research (sanitized targets):</p>
+
+  <div class="finding-grid" style="margin-top:24px;">
+    <div class="finding" style="border-left-color:var(--critical);">
+      <div class="finding-top">
+        <span class="finding-id">POC-01</span>
+        <span class="finding-badge" style="background:rgba(229,72,77,0.12); color:var(--critical);">HIGH SEVERITY</span>
+      </div>
+      <h4>Insecure Direct Object Reference (IDOR) to Account Takeover</h4>
+      <p>Exploited missing server-side authorization checks on user profile update API endpoints, allowing parameter tampering to overwrite victim password reset tokens.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--info);">
+      <div class="finding-top">
+        <span class="finding-id">POC-02</span>
+        <span class="finding-badge prof">MEDIUM SEVERITY</span>
+      </div>
+      <h4>Reflected XSS with Web Application Firewall (WAF) Bypass</h4>
+      <p>Crafted dynamic JavaScript payloads bypassing HTML entity filtering and WAF regex constraints on search input parameters to execute arbitrary client scripts.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--verified);">
+      <div class="finding-top">
+        <span class="finding-id">POC-03</span>
+        <span class="finding-badge core">BUSINESS LOGIC</span>
+      </div>
+      <h4>Payment Logic Flaw & Coupon Manipulation</h4>
+      <p>Identified parameter tampering vulnerability in e-commerce checkout flow where negative quantity values resulted in wallet balance inflation.</p>
+    </div>
+
+    <div class="finding" style="border-left-color:var(--verified);">
+      <div class="finding-top">
+        <span class="finding-id">POC-04</span>
+        <span class="finding-badge core">LAB PRACTICE</span>
+      </div>
+      <h4>PortSwigger & TryHackMe CTF Labs Completed</h4>
+      <p>Active solver on PortSwigger Web Security Academy & TryHackMe labs covering SQLi, SSRF, Broken Auth, and Privilege Escalation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="section">
+  <div class="sec-head">
+    <span class="sec-num">05.</span>
+    <h2>Career Timeline & Background</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-date">PRESENT</div>
+      <div class="t-title">Active Bug Hunter & Security Researcher</div>
+      <div class="t-sub">Investigating web applications, practicing lab challenges on PortSwigger & TryHackMe, and documenting security findings.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">2023 - 2024</div>
+      <div class="t-title">Dedicated Penetration Testing Training</div>
+      <div class="t-sub">Completed intense hands-on coursework covering network security, web app assessment, and offensive security tooling.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">2022 - 2023</div>
+      <div class="t-title">Foundations in Information Technology & Linux Systems</div>
+      <div class="t-sub">Gained core proficiency in networking protocols (TCP/IP, HTTP/S, DNS), Linux administration, and Python scripting.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;">
+    <h3 style="font-family:var(--mono); font-size:13px; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Language Proficiency</h3>
+    <div class="lang-row">
+      <div class="lang-item">
+        <div class="lang-name">Arabic <small>Native Speaker</small></div>
+        <div class="lang-bar"><div class="lang-fill" style="width:100%;"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">English <small>Professional / Technical Working</small></div>
+        <div class="lang-bar"><div class="lang-fill" style="width:85%;"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="contact" class="cta">
+  <div class="cta-inner">
+    <span class="sec-num">06. REACH OUT</span>
+    <h2>Initiate Contact & Verification</h2>
+    <p class="lede">Interested in hiring Ahmed Sobhi Hassan for a Penetration Testing position, Bug Bounty collaboration, or Security Internship?</p>
+
+    <div class="contact-grid">
+      <a href="mailto:ahmedelshabasy30@gmail.com" class="contact-card">
+        <div class="clabel"><i class="fa-solid fa-envelope"></i> EMAIL</div>
+        <div class="cval">ahmedelshabasy30@gmail.com</div>
+      </a>
+
+      <a href="tel:+201005728536" class="contact-card">
+        <div class="clabel"><i class="fa-solid fa-phone"></i> PHONE / WHATSAPP</div>
+        <div class="cval">+20 100 572 8536</div>
+      </a>
+
+      <a href="https://github.com/Shabasy12" target="_blank" rel="noopener" class="contact-card">
+        <div class="clabel"><i class="fa-brands fa-github"></i> GITHUB</div>
+        <div class="cval">github.com/Shabasy12</div>
+      </a>
+
+      <div class="contact-card" onclick="copyContact()">
+        <div class="clabel"><i class="fa-solid fa-location-dot"></i> LOCATION</div>
+        <div class="cval">Alexandria, Egypt (Open to Remote)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>&copy; 2026 Ahmed Sobhi Hassan — Penetration Testing Assessment</div>
+  <div>STATUS: READY FOR SECURITY OPPORTUNITIES</div>
+</footer>
+
+<div class="ai-launcher" id="aiLauncher" onclick="toggleAiPanel()" title="Ask Security AI about Ahmed">
+  <i class="fa-solid fa-robot"></i>
+  <span class="ping"></span>
+</div>
+
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-head">
+    <span class="dot"></span>
+    <div>
+      <div class="t">Ahmed Security Bot</div>
+      <div class="sub">Ask me anything about candidate</div>
+    </div>
+    <span class="ai-close" onclick="toggleAiPanel()">&times;</span>
+  </div>
+
+  <div class="ai-body" id="aiBody">
+    <div class="ai-msg bot">
+      Hello! I am the automated assistant for <strong>Ahmed Sobhi Hassan</strong>. How can I help evaluate his qualifications or provide contact info?
+    </div>
+  </div>
+
+  <div class="ai-chips">
+    <span class="ai-chip" onclick="quickAsk('What are his main technical skills?')">Skills</span>
+    <span class="ai-chip" onclick="quickAsk('What bug bounty vulnerabilities does he focus on?')">Vulnerabilities</span>
+    <span class="ai-chip" onclick="quickAsk('How to contact Ahmed?')">Contact Info</span>
+  </div>
+
+  <div class="ai-inputrow">
+    <input type="text" id="aiInput" placeholder="Ask a question..." onkeydown="if(event.key==='Enter') sendAiMsg()">
+    <button class="ai-send" onclick="sendAiMsg()">Send</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section, .cta');
+    const navLinks = document.querySelectorAll('.subnav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 100;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  });
+
+  function toggleAiPanel() {
+    const panel = document.getElementById('aiPanel');
+    panel.classList.toggle('open');
+  }
+
+  function quickAsk(q) {
+    document.getElementById('aiInput').value = q;
+    sendAiMsg();
+  }
+
+  function sendAiMsg() {
+    const input = document.getElementById('aiInput');
+    const txt = input.value.trim();
+    if (!txt) return;
+
+    const body = document.getElementById('aiBody');
+
+    // Add user message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'ai-msg user';
+    userDiv.innerText = txt;
+    body.appendChild(userDiv);
+
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
+
+    // Generate response
+    setTimeout(() => {
+      const botDiv = document.createElement('div');
+      botDiv.className = 'ai-msg bot';
+      botDiv.innerHTML = getAiResponse(txt);
+      body.appendChild(botDiv);
+      body.scrollTop = body.scrollHeight;
+    }, 400);
+  }
+
+  function getAiResponse(q) {
+    const query = q.toLowerCase();
+
+    if (query.includes('skill') || query.includes('tool') || query.includes('tech')) {
+      return "Ahmed specializes in Web Application Security, Burp Suite, Nmap, Kali Linux, Python scripting, and finding OWASP Top 10 flaws like XSS, SQLi, IDOR, and CSRF.";
+    }
+    if (query.includes('vuln') || query.includes('bug') || query.includes('bounty') || query.includes('owasp')) {
+      return "His primary vulnerability research focuses on Cross-Site Scripting (XSS), SQL Injection (SQLi), Insecure Direct Object References (IDOR), and broken access controls.";
+    }
+    if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('reach') || query.includes('mail')) {
+      return "You can reach Ahmed Sobhi Hassan directly via:<br>&bull; <strong>Email:</strong> ahmedelshabasy30@gmail.com<br>&bull; <strong>Phone/WhatsApp:</strong> +20 100 572 8536<br>&bull; <strong>GitHub:</strong> github.com/Shabasy12<br>&bull; <strong>Location:</strong> Alexandria, Egypt";
+    }
+    if (query.includes('cert') || query.includes('course') || query.includes('education') || query.includes('ejpt')) {
+      return "Ahmed has completed extensive hands-on labs in TryHackMe, PortSwigger Academy, and coursework towards eJPT (Junior Penetration Tester) covering network & web security.";
+    }
+    if (query.includes('location') || query.includes('where') || query.includes('egypt')) {
+      return "Ahmed is based in Alexandria, Egypt and is ready for both local on-site opportunities and remote security roles worldwide.";
+    }
+
+    return "Ahmed Sobhi Hassan is a dedicated Junior Penetration Tester & Bug Hunter based in Alexandria, Egypt. Feel free to contact him at <strong>ahmedelshabasy30@gmail.com</strong> or call <strong>+20 100 572 8536</strong>!";
+  }
+
+  function copyContact() {
+    const text = "Ahmed Sobhi Hassan | Email: ahmedelshabasy30@gmail.com | Phone: +20 100 572 8536 | GitHub: https://github.com/Shabasy12";
+    const temp = document.createElement('input');
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+
+    const toast = document.createElement('div');
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.background = '#2FA875';
+    toast.style.color = '#000';
+    toast.style.padding = '10px 20px';
+    toast.style.borderRadius = '8px';
+    toast.style.fontFamily = 'var(--mono)';
+    toast.style.fontSize = '12px';
+    toast.style.zIndex = '9999';
+    toast.style.fontWeight = 'bold';
+    toast.innerText = 'Contact info copied to clipboard!';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+  }
+</script>
+</body>
+</html>
