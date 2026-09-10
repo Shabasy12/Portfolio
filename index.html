@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -25,6 +25,7 @@
     --info:#C97C1F;
     --mono: 'JetBrains Mono', monospace;
     --sans: 'Inter', sans-serif;
+    --arabic-sans: 'Tajawal', sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -35,11 +36,93 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
+  
+  /* RTL & Arabic Support */
+  [dir="rtl"] body {
+    font-family: var(--arabic-sans);
+  }
+  [dir="rtl"] .sec-head {
+    flex-direction: row;
+  }
+  [dir="rtl"] .finding {
+    border-left: none;
+    border-right: 3px solid var(--verified);
+  }
+  [dir="rtl"] .timeline {
+    padding-left: 0;
+    padding-right: 26px;
+  }
+  [dir="rtl"] .timeline::before {
+    left: auto;
+    right: 5px;
+  }
+  [dir="rtl"] .t-item::before {
+    left: auto;
+    right: -26px;
+  }
+  [dir="rtl"] .ai-launcher {
+    right: auto;
+    left: 22px;
+  }
+  [dir="rtl"] .ai-panel {
+    right: auto;
+    left: 22px;
+  }
+  /* RTL Font & Letter-Spacing Fixes */
+  [dir="rtl"] .ai-chip, 
+  [dir="rtl"] .btn-action, 
+  [dir="rtl"] .badge, 
+  [dir="rtl"] .ai-head, 
+  [dir="rtl"] .contact-card .clabel, 
+  [dir="rtl"] .term-title,
+  [dir="rtl"] .ai-send {
+    letter-spacing: normal !important;
+    font-family: var(--arabic-sans) !important;
+  }
+  [dir="rtl"] .ai-msg {
+    text-align: right;
+  }
+  [dir="rtl"] .ai-msg.bot {
+    border-radius: 8px 8px 2px 8px;
+  }
+  [dir="rtl"] .ai-msg.user {
+    border-radius: 8px 8px 8px 2px;
+  }
+
   a{color:inherit;}
   ::selection{background:var(--critical); color:#fff;}
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  /* ---------- FLOATING LANGUAGE TOGGLE ---------- */
+  .lang-toggle-btn {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 100;
+    background: rgba(18, 22, 28, 0.88);
+    backdrop-filter: blur(10px);
+    color: #5FD3A7;
+    border: 1px solid #2A3038;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    transition: all 0.2s ease;
+  }
+  .lang-toggle-btn:hover {
+    background: #171C22;
+    border-color: #5FD3A7;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(95, 211, 167, 0.2);
+  }
+  [dir="rtl"] .lang-toggle-btn {
+    right: auto;
+    left: 22px;
   }
 
   /* ---------- HERO ---------- */
@@ -75,6 +158,10 @@
     font-family:var(--mono);
     font-size:12px;
     color:var(--muted-light);
+  }
+  [dir="rtl"] .term-title {
+    margin-left: 0;
+    margin-right: 10px;
   }
   .term-body{
     padding:22px 24px 26px;
@@ -112,17 +199,21 @@
   .cover h1{
     font-family:var(--mono);
     font-weight:700;
-    font-size:clamp(30px, 5vw, 50px);
-    line-height:1.12;
+    font-size:clamp(28px, 4.5vw, 48px);
+    line-height:1.15;
     letter-spacing:-0.01em;
     color:#F3F5F7;
-    max-width:18ch;
+    max-width:20ch;
+  }
+  [dir="rtl"] .cover h1 {
+    font-family: var(--arabic-sans);
+    font-weight: 700;
   }
   .cover .subtitle{
     margin-top:14px;
     font-size:16px;
     color:var(--muted-light);
-    max-width:56ch;
+    max-width:58ch;
   }
   .cover .subtitle strong{
     color:#F3F5F7;
@@ -131,7 +222,7 @@
     text-decoration-color:#3A424B;
   }
 
-  /* Social Links & CV Action */
+  /* Social Links & Actions */
   .hero-actions{
     display:flex;
     gap:12px;
@@ -149,6 +240,9 @@
     border-radius:6px;
     text-decoration:none;
     transition:all 0.15s ease;
+  }
+  [dir="rtl"] .btn-action {
+    font-family: var(--arabic-sans);
   }
   .btn-primary{
     background:var(--verified);
@@ -173,10 +267,14 @@
     padding:20px 4px 0;
     border-right:1px solid #23282F;
   }
-  .stat:last-child{border-right:none;}
+  [dir="rtl"] .stat {
+    border-right: none;
+    border-left: 1px solid #23282F;
+  }
+  .stat:last-child{border-right:none; border-left:none;}
   .stat .num{
     font-family:var(--mono);
-    font-size:26px;
+    font-size:24px;
     font-weight:700;
     color:#F3F5F7;
   }
@@ -235,6 +333,7 @@
   .subnav a:hover{ color:var(--text); }
   .subnav a.active{ color:var(--text); border-bottom-color:var(--critical); font-weight:600; }
 
+  /* ---------- SECTIONS ---------- */
   .section{
     max-width:920px;
     margin:0 auto;
@@ -260,45 +359,30 @@
     font-weight:600;
     letter-spacing:-0.01em;
   }
+  [dir="rtl"] .sec-head h2 {
+    font-family: var(--arabic-sans);
+    font-weight: 700;
+  }
 
   .lede{
-    font-size:17px;
+    font-size:16.5px;
     color:var(--text);
     max-width:62ch;
     margin-bottom:18px;
+    line-height:1.7;
   }
   .lede + .lede{color:var(--muted);}
 
-  /* scope card */
-  .scope-card{
-    background:var(--paper-card);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:26px 28px;
-  }
-  .scope-row{
-    display:flex; justify-content:space-between; gap:20px;
-    padding:12px 0;
-    border-bottom:1px solid var(--line);
-    font-size:14.5px;
-  }
-  .scope-row:last-child{border-bottom:none;}
-  .scope-row .k{color:var(--muted); font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em; padding-top:2px;}
-  .scope-row .v{text-align:right; max-width:60%; font-weight:500;}
-  .tag-row{margin-top:18px; display:flex; flex-wrap:wrap; gap:8px;}
-  .tag{
-    font-family:var(--mono); font-size:12px;
-    padding:5px 10px; border:1px solid var(--line); border-radius:20px;
-    color:var(--muted);
-    background:rgba(0,0,0,0.02);
-  }
-
+  /* Methodology Entries */
   .method-entry{
     display:grid;
     grid-template-columns:150px 1fr;
     gap:20px;
     padding:24px 0;
     border-top:1px solid var(--line);
+  }
+  [dir="rtl"] .method-entry {
+    grid-template-columns: 150px 1fr;
   }
   .method-entry:first-of-type{border-top:none;}
   .method-date{
@@ -308,20 +392,21 @@
     padding-top:3px;
   }
   .method-title{font-weight:600; font-size:16px; margin-bottom:6px;}
-  .method-desc{color:var(--muted); font-size:14.5px; max-width:58ch;}
+  .method-desc{color:var(--muted); font-size:14.5px; max-width:58ch; line-height:1.6;}
   .course-list{margin-top:36px;}
   .course-list h3{
     font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em;
     color:var(--muted); margin-bottom:16px;
   }
+  [dir="rtl"] .course-list h3 { font-family: var(--arabic-sans); }
   .course-item{
     padding:16px 0; border-top:1px solid var(--line);
     display:flex; justify-content:space-between; gap:16px; font-size:14.5px;
   }
-  .course-item .cname{font-weight:500;}
+  .course-item .cname{font-weight:600;}
   .course-item .cdate{font-family:var(--mono); font-size:12px; color:var(--muted); white-space:nowrap; padding-top:2px;}
 
-  /* findings */
+  /* Findings Cards */
   .finding-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -333,7 +418,6 @@
     border-left:3px solid var(--verified);
     border-radius:6px;
     padding:18px 20px;
-    cursor:default;
     transition:transform .15s ease, box-shadow .15s ease;
   }
   .finding:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -14px rgba(0,0,0,0.25); }
@@ -347,20 +431,10 @@
   }
   .finding-badge.core{ background:rgba(47,168,117,0.12); color:var(--verified); }
   .finding-badge.prof{ background:rgba(201,124,31,0.12); color:var(--info); }
-  .finding h4{font-size:15.5px; margin-bottom:6px;}
-  .finding p{font-size:13.5px; color:var(--muted);}
+  .finding h4{font-size:15.5px; margin-bottom:6px; font-weight:600;}
+  .finding p{font-size:13.5px; color:var(--muted); line-height:1.5;}
 
-  .softskills{margin-top:34px;}
-  .softskills h3{
-    font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em;
-    color:var(--muted); margin-bottom:14px;
-  }
-  .soft-tags{display:flex; flex-wrap:wrap; gap:8px;}
-  .soft-tags span{
-    font-size:13px; padding:6px 12px; background:var(--paper-card);
-    border:1px solid var(--line); border-radius:5px; color:var(--text);
-  }
-
+  /* Timeline */
   .timeline{position:relative; padding-left:26px;}
   .timeline::before{
     content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1.5px; background:var(--line);
@@ -374,17 +448,9 @@
   }
   .t-date{font-family:var(--mono); font-size:12px; color:var(--critical); margin-bottom:4px;}
   .t-title{font-weight:600; font-size:15.5px; margin-bottom:3px;}
-  .t-sub{font-size:13.5px; color:var(--muted);}
+  .t-sub{font-size:13.5px; color:var(--muted); line-height:1.6;}
 
-  /* languages */
-  .lang-row{display:flex; gap:40px; flex-wrap:wrap; margin-top:16px;}
-  .lang-item{min-width:220px; flex:1;}
-  .lang-name{font-weight:600; font-size:15px; margin-bottom:6px; display:flex; justify-content:space-between;}
-  .lang-name small{font-family:var(--mono); font-weight:400; color:var(--muted); font-size:12px;}
-  .lang-bar{height:6px; background:var(--line); border-radius:3px; overflow:hidden;}
-  .lang-fill{height:100%; background:var(--verified); border-radius:3px;}
-
-  /* contact / CTA */
+  /* Contact / CTA */
   .cta{
     background:var(--ink);
     color:#DEE3E7;
@@ -395,11 +461,12 @@
   .cta h2{
     font-family:var(--mono); font-size:26px; font-weight:600; color:#F3F5F7; margin-bottom:14px;
   }
+  [dir="rtl"] .cta h2 { font-family: var(--arabic-sans); }
   .cta p.lede{color:#B7BEC5; max-width:56ch;}
   .contact-grid{
     margin-top:36px;
     display:grid;
-    grid-template-columns:repeat(4, 1fr);
+    grid-template-columns:repeat(3, 1fr);
     gap:14px;
   }
   .contact-card{
@@ -415,6 +482,7 @@
     font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted-light);
     margin-bottom:8px;
   }
+  [dir="rtl"] .contact-card .clabel { font-family: var(--arabic-sans); }
   .contact-card .cval{font-size:14.5px; color:#F0F2F4; word-break:break-word;}
 
   footer{
@@ -425,7 +493,9 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
     max-width:920px; margin:0 auto;
   }
+  [dir="rtl"] footer { font-family: var(--arabic-sans); }
 
+  /* AI Bot Assistant */
   .ai-launcher{
     position:fixed;
     right:22px;
@@ -490,6 +560,7 @@
     margin-left:auto; cursor:pointer; color:var(--muted-light);
     font-family:var(--mono); font-size:14px; padding:2px 6px;
   }
+  [dir="rtl"] .ai-close { margin-left: 0; margin-right: auto; }
   .ai-close:hover{ color:#DEE3E7; }
 
   .ai-body{
@@ -560,17 +631,15 @@
 
   @media (max-width:768px){
     .contact-grid{grid-template-columns:1fr 1fr;}
+    .method-entry{grid-template-columns:1fr; gap:6px;}
   }
 
   @media (max-width:640px){
     .cover-stats{grid-template-columns:1fr; }
-    .stat{border-right:none; border-top:1px solid #23282F; padding-top:16px; margin-top:4px;}
+    .stat{border-right:none; border-left:none; border-top:1px solid #23282F; padding-top:16px; margin-top:4px;}
     .stat:first-child{border-top:none; margin-top:0;}
-    .method-entry{grid-template-columns:1fr; gap:6px;}
     .finding-grid{grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr;}
-    .scope-row{flex-direction:column; gap:4px;}
-    .scope-row .v{text-align:left; max-width:100%;}
   }
 
   @media (max-width:480px){
@@ -581,6 +650,12 @@
 </head>
 <body>
 
+<!-- Floating Language Switcher -->
+<button id="langToggleBtn" class="lang-toggle-btn" onclick="toggleLanguage()">
+  <i class="fa-solid fa-globe"></i> <span id="langBtnText">العربية</span>
+</button>
+
+<!-- HERO SECTION -->
 <div class="hero">
   <div class="term-wrap">
     <div class="term">
@@ -590,9 +665,9 @@
       </div>
       <div class="term-body" id="termBody">
         <div class="ln"><span class="prompt">$</span> whoami</div>
-        <div class="ln"><span class="out">&gt; Ahmed Sobhi Hassan — Bug Hunter / Junior Penetration Tester</span></div>
+        <div class="ln"><span class="out">&gt; <span data-i18n="hero_terminal_whoami">Ahmed Sobhi Hassan — Bug Hunter / Junior Penetration Tester</span></span></div>
         <div class="ln"><span class="prompt">$</span> cat contact.txt</div>
-        <div class="ln"><span class="out">&gt; </span><span class="lbl">location</span> Alexandria, Egypt &nbsp;<span class="lbl">mail</span> ahmedelshabasy30@gmail.com &nbsp;<span class="lbl">tel</span> +20 100 572 8536</div>
+        <div class="ln"><span class="out">&gt; </span><span class="lbl">mail</span> ahmedelshabasy30@gmail.com &nbsp;<span class="lbl">tel</span> <a href="https://wa.me/201005728536" target="_blank" rel="noopener" style="color:#5FD3A7; text-decoration:underline;">+20 100 572 8536</a></div>
         <div class="ln"><span class="prompt">$</span> <span class="cursor"></span></div>
       </div>
     </div>
@@ -610,16 +685,17 @@
     </div>
 
     <div class="badges-row">
-      <span class="badge conf"><i class="fa-solid fa-lock"></i> CONFIDENTIAL ASSESSMENT REPORT</span>
-      <span class="badge active"><i class="fa-solid fa-circle-check"></i> VERIFIED CANDIDATE PROFILE</span>
+      <span class="badge conf"><i class="fa-solid fa-lock"></i> <span data-i18n="badge_conf">CONFIDENTIAL ASSESSMENT REPORT</span></span>
+      <span class="badge active"><i class="fa-solid fa-circle-check"></i> <span data-i18n="badge_active">VERIFIED CANDIDATE PROFILE</span></span>
     </div>
 
-    <h1>Assessment & Security Career Portfolio</h1>
-    <p class="subtitle">Detailed evaluation of technical skills, security findings methodology, and bug hunting capabilities for <strong>Ahmed Sobhi Hassan</strong>.</p>
+    <h1 data-i18n="cover_title">Assessment & Security Career Portfolio</h1>
+    <p class="subtitle" data-i18n="cover_subtitle">Detailed evaluation of technical skills, security findings methodology, and bug hunting capabilities for <strong>Ahmed Sobhi Hassan</strong>.</p>
 
     <div class="hero-actions">
-      <a href="mailto:ahmedelshabasy30@gmail.com" class="btn-action btn-primary"><i class="fa-solid fa-paper-plane"></i> Hire / Contact Me</a>
-      <a href="CV.pdf" download="Ahmed_Elshabasy_CV.pdf" class="btn-action btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+      <a href="mailto:ahmedelshabasy30@gmail.com" class="btn-action btn-primary"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_hire">Hire / Contact Me</span></a>
+      <a href="https://wa.me/201005728536" target="_blank" rel="noopener" class="btn-action btn-secondary" style="border-color:#25D366; color:#25D366;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      <a href="#" onclick="copyContact(); return false;" class="btn-action btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="btn_cv">Download CV (PDF)</span></a>
       <a href="https://github.com/Shabasy12" target="_blank" rel="noopener" class="btn-action btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
       <a href="https://www.linkedin.com/in/ahmed-elshabasy-8a4aa5365/" target="_blank" rel="noopener" class="btn-action btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
     </div>
@@ -627,170 +703,226 @@
     <div class="cover-stats">
       <div class="stat">
         <div class="num">100%</div>
-        <div class="lab">Ethical & Methodology Focused</div>
+        <div class="lab" data-i18n="stat_1">Ethical & Methodology Focused</div>
       </div>
       <div class="stat">
         <div class="num">OWASP</div>
-        <div class="lab">Top 10 Web Vulnerabilities</div>
+        <div class="lab" data-i18n="stat_2">Top 10 Web Vulnerabilities</div>
       </div>
       <div class="stat">
-        <div class="num">ALX, EG</div>
-        <div class="lab">Location & Remote Ready</div>
+        <div class="num">REMOTE</div>
+        <div class="lab" data-i18n="stat_3">Available Worldwide</div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- SUBNAV -->
 <div class="subnav">
   <div class="subnav-inner">
-    <a href="#scope" class="active">01. Candidate Scope</a>
-    <a href="#methodology">02. Methodology & Certs</a>
-    <a href="#findings">03. Technical Findings</a>
-    <a href="#writeups">04. Writeups & Research</a>
-    <a href="#timeline">05. Timeline & Background</a>
-    <a href="#contact">06. Contact Details</a>
+    <a href="#scope" class="active" data-i18n="nav_1">01. About & Profile</a>
+    <a href="#methodology" data-i18n="nav_2">02. Methodology & Certs</a>
+    <a href="#findings" data-i18n="nav_3">03. Technical Findings</a>
+    <a href="#writeups" data-i18n="nav_4">04. Writeups & Research</a>
+    <a href="#timeline" data-i18n="nav_5">05. Timeline & Background</a>
+    <a href="#contact" data-i18n="nav_6">06. Contact Details</a>
   </div>
 </div>
 
+<!-- SECTION 01: ABOUT & PROFILE -->
 <section id="scope" class="section">
   <div class="sec-head">
     <span class="sec-num">01.</span>
-    <h2>Scope & Target Profile</h2>
+    <h2 data-i18n="sec1_title">About Me & Professional Profile</h2>
   </div>
 
-  <p class="lede">Ahmed Sobhi Hassan is an enthusiastic Junior Penetration Tester and Bug Hunter driven by a passion for ethical hacking, vulnerability research, and continuous learning.</p>
-  <p class="lede">Specializing in Web Application Security, Reconnaissance, and OWASP Top 10 exploitation techniques, he delivers meticulous vulnerability reports with clear remediation steps.</p>
+  <div style="display:flex; flex-direction:column; gap:20px;">
+    <p class="lede" style="font-size:16.5px; line-height:1.75; color:var(--text);" data-i18n="sec1_p1">
+      I am a dedicated, results-oriented <strong>Junior Penetration Tester</strong> and <strong>Bug Hunter</strong> driven by a strong passion for web application security, offensive security research, and vulnerability assessments. My core focus lies in systematically analyzing complex web architectures, identifying critical security flaws before malicious actors can exploit them, and helping organizations fortify their digital infrastructure.
+    </p>
 
-  <div class="scope-card" style="margin-top:28px;">
-    <div class="scope-row">
-      <span class="k">Candidate Name</span>
-      <span class="v">Ahmed Sobhi Hassan</span>
-    </div>
-    <div class="scope-row">
-      <span class="k">Primary Specialization</span>
-      <span class="v">Junior Penetration Tester / Bug Hunter</span>
-    </div>
-    <div class="scope-row">
-      <span class="k">Geographic Base</span>
-      <span class="v">Alexandria, Egypt</span>
-    </div>
-    <div class="scope-row">
-      <span class="k">Contact Email</span>
-      <span class="v">ahmedelshabasy30@gmail.com</span>
-    </div>
-    <div class="scope-row">
-      <span class="k">Contact Phone</span>
-      <span class="v">+20 100 572 8536</span>
-    </div>
-    <div class="scope-row">
-      <span class="k">Target Security Roles</span>
-      <span class="v">Junior PenTester, SOC Analyst (L1), AppSec Intern</span>
-    </div>
+    <p class="lede" style="font-size:15.5px; line-height:1.75; color:var(--muted);" data-i18n="sec1_p2">
+      Through rigorous hands-on training and lab exercises on platforms like <strong>PortSwigger Web Security Academy</strong> and <strong>TryHackMe</strong>, I have developed solid expertise in attack vectors aligned with the <strong>OWASP Top 10</strong> framework. I specialize in diagnosing Cross-Site Scripting (XSS), SQL Injection (SQLi), Insecure Direct Object References (IDOR), Broken Access Controls, and CSRF flaws, with a commitment to delivering professional Proof of Concept (PoC) reports and clear remediation guidance.
+    </p>
 
-    <div class="tag-row">
-      <span class="tag">#BurpSuite</span>
-      <span class="tag">#Nmap</span>
-      <span class="tag">#OWASP_Top_10</span>
-      <span class="tag">#XSS_Exploitation</span>
-      <span class="tag">#SQLi</span>
-      <span class="tag">#IDOR</span>
-      <span class="tag">#Linux_Kali</span>
-      <span class="tag">#Python_Scripting</span>
+    <div style="background:var(--paper-card); border:1px solid var(--line); border-radius:8px; padding:24px; margin-top:8px;">
+      <h3 style="font-family:var(--mono); font-size:14px; margin-bottom:14px; color:var(--text);" data-i18n="sec1_box_title">
+        <i class="fa-solid fa-shield-halved" style="color:var(--verified); margin-right:8px;"></i> Technical Expertise & Core Capabilities
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; font-size:14px; color:var(--muted);">
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_1">Web Application Penetration Testing</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_2">OWASP Top 10 Vulnerability Assessment</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_3">Burp Suite Professional & Community</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_4">Bug Bounty Hunting & Security Research</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_5">Python & Bash Script Automation</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_6">Linux Security Suite (Kali Linux)</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_7">PoC Writing & Technical Reports</span></div>
+        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-check" style="color:var(--verified);"></i> <span data-i18n="skill_8">Network Reconnaissance & Nmap</span></div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- SECTION 02: METHODOLOGY & CERTS -->
+<section id="methodology" class="section">
+  <div class="sec-head">
+    <span class="sec-num">02.</span>
+    <h2 data-i18n="sec2_title">Methodology & Certifications</h2>
+  </div>
+  <p class="lede" data-i18n="sec2_lede">A structured, standards-driven approach to offensive security and penetration testing, following PTES and OWASP testing frameworks.</p>
+  
+  <div style="display:flex; flex-direction:column; margin-top:24px;">
+    <div class="method-entry">
+      <div class="method-date" data-i18n="phase1_lbl">PHASE 01</div>
+      <div>
+        <div class="method-title" data-i18n="phase1_title">Reconnaissance & Asset Discovery</div>
+        <div class="method-desc" data-i18n="phase1_desc">Subdomain enumeration, technology stack fingerprinting, endpoint mapping, and uncovering hidden attack surfaces using automated tools and manual techniques.</div>
+      </div>
+    </div>
+    <div class="method-entry">
+      <div class="method-date" data-i18n="phase2_lbl">PHASE 02</div>
+      <div>
+        <div class="method-title" data-i18n="phase2_title">Vulnerability Analysis & Identification</div>
+        <div class="method-desc" data-i18n="phase2_desc">Analyzing web application logic, input fields, state parameters, and API endpoints against OWASP Top 10 security standards.</div>
+      </div>
+    </div>
+    <div class="method-entry">
+      <div class="method-date" data-i18n="phase3_lbl">PHASE 03</div>
+      <div>
+        <div class="method-title" data-i18n="phase3_title">Exploitation & Impact Demonstration</div>
+        <div class="method-desc" data-i18n="phase3_desc">Controlled payload crafting to safely validate security vulnerabilities without disrupting operational continuity or integrity.</div>
+      </div>
+    </div>
+    <div class="method-entry">
+      <div class="method-date" data-i18n="phase4_lbl">PHASE 04</div>
+      <div>
+        <div class="method-title" data-i18n="phase4_title">PoC Reporting & Patch Recommendations</div>
+        <div class="method-desc" data-i18n="phase4_desc">Documenting step-by-step reproduction steps, severity rating (CVSS), root-cause analysis, and actionable mitigation guidance for developers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-list">
+    <h3 data-i18n="courses_title">Hands-on Labs & Specialized Training</h3>
+    <div class="course-item">
+      <div>
+        <div class="cname">PortSwigger Web Security Academy</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;" data-i18n="course1_desc">Advanced practical labs covering XSS, SQLi, IDOR, CSRF, Access Control, and Business Logic flaws</div>
+      </div>
+      <div class="cdate" data-i18n="course1_badge">COMPLETED LABS</div>
+    </div>
+    <div class="course-item">
+      <div>
+        <div class="cname">TryHackMe — Junior Penetration Tester Track</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:2px;" data-i18n="course2_desc">Network Security, Web Hacking, Privilege Escalation, and Offensive Security Methodologies</div>
+      </div>
+      <div class="cdate" data-i18n="course2_badge">COMPLETED PATH</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: TECHNICAL FINDINGS -->
+<section id="findings" class="section">
+  <div class="sec-head">
+    <span class="sec-num">03.</span>
+    <h2 data-i18n="sec3_title">Technical Findings & Vulnerability Reports</h2>
+  </div>
+  <p class="lede" data-i18n="sec3_lede">Representative samples of security vulnerabilities analyzed and documented during web security audits and bug hunting.</p>
+
+  <div class="finding-grid" style="margin-top:24px;">
+    <div class="finding">
+      <div class="finding-top">
+        <span class="finding-id">VULN-01</span>
+        <span class="finding-badge core" data-i18n="badge_critical">HIGH / CRITICAL</span>
+      </div>
+      <h4 data-i18n="v1_title">Insecure Direct Object Reference (IDOR) in User API</h4>
+      <p data-i18n="v1_desc">Modifying request parameters in REST API endpoints allowed unauthorized access to private account data of other users.</p>
+    </div>
+
+    <div class="finding">
+      <div class="finding-top">
+        <span class="finding-id">VULN-02</span>
+        <span class="finding-badge core" data-i18n="badge_high">HIGH</span>
+      </div>
+      <h4 data-i18n="v2_title">Stored Cross-Site Scripting (XSS) in Comment Inputs</h4>
+      <p data-i18n="v2_desc">Unsanitized user inputs allowed malicious JavaScript payload execution within administrative review panels.</p>
+    </div>
+
+    <div class="finding">
+      <div class="finding-top">
+        <span class="finding-id">VULN-03</span>
+        <span class="finding-badge prof" data-i18n="badge_med">MEDIUM</span>
+      </div>
+      <h4 data-i18n="v3_title">Cross-Site Request Forgery (CSRF) on Sensitive Actions</h4>
+      <p data-i18n="v3_desc">Absence of CSRF protection tokens in profile settings allowed unauthorized state modification via third-party web pages.</p>
+    </div>
+
+    <div class="finding">
+      <div class="finding-top">
+        <span class="finding-id">VULN-04</span>
+        <span class="finding-badge core" data-i18n="badge_high">HIGH</span>
+      </div>
+      <h4 data-i18n="v4_title">Authentication Bypass via Blind SQL Injection</h4>
+      <p data-i18n="v4_desc">Time-based and boolean-based blind SQL injection in login parameters allowed database structure extraction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04: WRITEUPS & RESEARCH -->
 <section id="writeups" class="section">
   <div class="sec-head">
     <span class="sec-num">04.</span>
-    <h2>Security Writeups & Case Studies</h2>
+    <h2 data-i18n="sec4_title">Writeups & Security Research</h2>
   </div>
+  <p class="lede" data-i18n="sec4_lede">Technical articles and vulnerability walkthroughs authored to document security insights and bug hunting techniques.</p>
 
-  <p class="lede">Demonstrated Proof of Concepts (PoC) and vulnerability analysis from lab environments and bug bounty research (sanitized targets):</p>
-
-  <div class="finding-grid" style="margin-top:24px;">
-    <div class="finding" style="border-left-color:var(--critical);">
-      <div class="finding-top">
-        <span class="finding-id">POC-01</span>
-        <span class="finding-badge" style="background:rgba(229,72,77,0.12); color:var(--critical);">HIGH SEVERITY</span>
-      </div>
-      <h4>Insecure Direct Object Reference (IDOR) to Account Takeover</h4>
-      <p>Exploited missing server-side authorization checks on user profile update API endpoints, allowing parameter tampering to overwrite victim password reset tokens.</p>
+  <div style="display:flex; flex-direction:column; gap:16px; margin-top:24px;">
+    <div style="background:var(--paper-card); border:1px solid var(--line); border-radius:8px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:12px; color:var(--critical); margin-bottom:4px;" data-i18n="w1_tag">RESEARCH WRITEUP</div>
+      <h4 style="font-size:16px; font-weight:600; margin-bottom:6px;" data-i18n="w1_title">Bypassing Web Application Filters for Stored XSS</h4>
+      <p style="font-size:14px; color:var(--muted); line-height:1.6;" data-i18n="w1_desc">Detailed study on HTML context breaking, payload encoding, and bypassing modern web application firewalls (WAFs).</p>
     </div>
 
-    <div class="finding" style="border-left-color:var(--info);">
-      <div class="finding-top">
-        <span class="finding-id">POC-02</span>
-        <span class="finding-badge prof">MEDIUM SEVERITY</span>
-      </div>
-      <h4>Reflected XSS with Web Application Firewall (WAF) Bypass</h4>
-      <p>Crafted dynamic JavaScript payloads bypassing HTML entity filtering and WAF regex constraints on search input parameters to execute arbitrary client scripts.</p>
-    </div>
-
-    <div class="finding" style="border-left-color:var(--verified);">
-      <div class="finding-top">
-        <span class="finding-id">POC-03</span>
-        <span class="finding-badge core">BUSINESS LOGIC</span>
-      </div>
-      <h4>Payment Logic Flaw & Coupon Manipulation</h4>
-      <p>Identified parameter tampering vulnerability in e-commerce checkout flow where negative quantity values resulted in wallet balance inflation.</p>
-    </div>
-
-    <div class="finding" style="border-left-color:var(--verified);">
-      <div class="finding-top">
-        <span class="finding-id">POC-04</span>
-        <span class="finding-badge core">LAB PRACTICE</span>
-      </div>
-      <h4>PortSwigger & TryHackMe CTF Labs Completed</h4>
-      <p>Active solver on PortSwigger Web Security Academy & TryHackMe labs covering SQLi, SSRF, Broken Auth, and Privilege Escalation.</p>
+    <div style="background:var(--paper-card); border:1px solid var(--line); border-radius:8px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:12px; color:var(--verified); margin-bottom:4px;" data-i18n="w2_tag">METHODOLOGY GUIDE</div>
+      <h4 style="font-size:16px; font-weight:600; margin-bottom:6px;" data-i18n="w2_title">Systematic IDOR Exploitation in Modern REST APIs</h4>
+      <p style="font-size:14px; color:var(--muted); line-height:1.6;" data-i18n="w2_desc">Analyzing authorization logic, hash identifiers, and automating multi-account testing using Burp Suite tools.</p>
     </div>
   </div>
 </section>
 
+<!-- SECTION 05: TIMELINE & BACKGROUND -->
 <section id="timeline" class="section">
   <div class="sec-head">
     <span class="sec-num">05.</span>
-    <h2>Career Timeline & Background</h2>
+    <h2 data-i18n="sec5_title">Timeline & Background</h2>
   </div>
 
-  <div class="timeline">
+  <div class="timeline" style="margin-top:24px;">
     <div class="t-item">
-      <div class="t-date">PRESENT</div>
-      <div class="t-title">Active Bug Hunter & Security Researcher</div>
-      <div class="t-sub">Investigating web applications, practicing lab challenges on PortSwigger & TryHackMe, and documenting security findings.</div>
+      <div class="t-date" data-i18n="t1_date">2023 — PRESENT</div>
+      <div class="t-title" data-i18n="t1_title">Bug Hunter & Independent Security Researcher</div>
+      <div class="t-sub" data-i18n="t1_desc">Actively assessing target web applications, discovering OWASP vulnerabilities, writing PoC reports, and submitting security findings.</div>
     </div>
     <div class="t-item">
-      <div class="t-date">2023 - 2024</div>
-      <div class="t-title">Dedicated Penetration Testing Training</div>
-      <div class="t-sub">Completed intense hands-on coursework covering network security, web app assessment, and offensive security tooling.</div>
+      <div class="t-date" data-i18n="t2_date">2022 — 2024</div>
+      <div class="t-title" data-i18n="t2_title">Web Security & Penetration Testing Mastery</div>
+      <div class="t-sub" data-i18n="t2_desc">Completed intensive hands-on security training across PortSwigger Web Security Academy, TryHackMe, and lab environments.</div>
     </div>
     <div class="t-item">
-      <div class="t-date">2022 - 2023</div>
-      <div class="t-title">Foundations in Information Technology & Linux Systems</div>
-      <div class="t-sub">Gained core proficiency in networking protocols (TCP/IP, HTTP/S, DNS), Linux administration, and Python scripting.</div>
-    </div>
-  </div>
-
-  <div style="margin-top:48px;">
-    <h3 style="font-family:var(--mono); font-size:13px; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Language Proficiency</h3>
-    <div class="lang-row">
-      <div class="lang-item">
-        <div class="lang-name">Arabic <small>Native Speaker</small></div>
-        <div class="lang-bar"><div class="lang-fill" style="width:100%;"></div></div>
-      </div>
-      <div class="lang-item">
-        <div class="lang-name">English <small>Professional / Technical Working</small></div>
-        <div class="lang-bar"><div class="lang-fill" style="width:85%;"></div></div>
-      </div>
+      <div class="t-date" data-i18n="t3_date">ACADEMIC FOUNDATION</div>
+      <div class="t-title" data-i18n="t3_title">Computer Science & Systems Security Studies</div>
+      <div class="t-sub" data-i18n="t3_desc">Strong background in software fundamentals, networking architecture, Linux systems administration, and database management.</div>
     </div>
   </div>
 </section>
 
+<!-- SECTION 06: CONTACT / CTA -->
 <div id="contact" class="cta">
   <div class="cta-inner">
-    <span class="sec-num">06. REACH OUT</span>
-    <h2>Initiate Contact & Verification</h2>
-    <p class="lede">Interested in hiring Ahmed Sobhi Hassan for a Penetration Testing position, Bug Bounty collaboration, or Security Internship?</p>
+    <span class="sec-num" data-i18n="sec6_num">06. REACH OUT</span>
+    <h2 data-i18n="sec6_title">Initiate Contact & Verification</h2>
+    <p class="lede" data-i18n="sec6_lede">Interested in hiring Ahmed Sobhi Hassan for a Penetration Testing position, Bug Bounty collaboration, or Security Internship?</p>
 
     <div class="contact-grid">
       <a href="mailto:ahmedelshabasy30@gmail.com" class="contact-card">
@@ -798,8 +930,8 @@
         <div class="cval">ahmedelshabasy30@gmail.com</div>
       </a>
 
-      <a href="tel:+201005728536" class="contact-card">
-        <div class="clabel"><i class="fa-solid fa-phone"></i> PHONE / WHATSAPP</div>
+      <a href="https://wa.me/201005728536" target="_blank" rel="noopener" class="contact-card">
+        <div class="clabel"><i class="fa-brands fa-whatsapp"></i> PHONE / WHATSAPP</div>
         <div class="cval">+20 100 572 8536</div>
       </a>
 
@@ -807,20 +939,16 @@
         <div class="clabel"><i class="fa-brands fa-github"></i> GITHUB</div>
         <div class="cval">github.com/Shabasy12</div>
       </a>
-
-      <div class="contact-card" onclick="copyContact()">
-        <div class="clabel"><i class="fa-solid fa-location-dot"></i> LOCATION</div>
-        <div class="cval">Alexandria, Egypt (Open to Remote)</div>
-      </div>
     </div>
   </div>
 </div>
 
 <footer>
-  <div>&copy; 2026 Ahmed Sobhi Hassan — Penetration Testing Assessment</div>
-  <div>STATUS: READY FOR SECURITY OPPORTUNITIES</div>
+  <div data-i18n="footer_copy">&copy; 2026 Ahmed Sobhi Hassan — Penetration Testing Assessment</div>
+  <div data-i18n="footer_status">STATUS: READY FOR SECURITY OPPORTUNITIES</div>
 </footer>
 
+<!-- AI ASSISTANT PANEL -->
 <div class="ai-launcher" id="aiLauncher" onclick="toggleAiPanel()" title="Ask Security AI about Ahmed">
   <i class="fa-solid fa-robot"></i>
   <span class="ping"></span>
@@ -831,30 +959,246 @@
     <span class="dot"></span>
     <div>
       <div class="t">Ahmed Security Bot</div>
-      <div class="sub">Ask me anything about candidate</div>
+      <div class="sub" data-i18n="bot_sub">Ask me anything about candidate</div>
     </div>
     <span class="ai-close" onclick="toggleAiPanel()">&times;</span>
   </div>
 
   <div class="ai-body" id="aiBody">
-    <div class="ai-msg bot">
+    <div class="ai-msg bot" data-i18n="bot_welcome">
       Hello! I am the automated assistant for <strong>Ahmed Sobhi Hassan</strong>. How can I help evaluate his qualifications or provide contact info?
     </div>
   </div>
 
   <div class="ai-chips">
-    <span class="ai-chip" onclick="quickAsk('What are his main technical skills?')">Skills</span>
-    <span class="ai-chip" onclick="quickAsk('What bug bounty vulnerabilities does he focus on?')">Vulnerabilities</span>
-    <span class="ai-chip" onclick="quickAsk('How to contact Ahmed?')">Contact Info</span>
+    <span class="ai-chip" onclick="quickAsk(this.innerText)" data-i18n="chip_skills">Skills</span>
+    <span class="ai-chip" onclick="quickAsk(this.innerText)" data-i18n="chip_vulns">Vulnerabilities</span>
+    <span class="ai-chip" onclick="quickAsk(this.innerText)" data-i18n="chip_contact">Contact Info</span>
   </div>
 
   <div class="ai-inputrow">
     <input type="text" id="aiInput" placeholder="Ask a question..." onkeydown="if(event.key==='Enter') sendAiMsg()">
-    <button class="ai-send" onclick="sendAiMsg()">Send</button>
+    <button class="ai-send" onclick="sendAiMsg()" data-i18n="btn_send">Send</button>
   </div>
 </div>
 
 <script>
+  const translations = {
+    en: {
+      btn_lang: "العربية",
+      hero_terminal_whoami: "Ahmed Sobhi Hassan — Bug Hunter / Junior Penetration Tester",
+      badge_conf: "CONFIDENTIAL ASSESSMENT REPORT",
+      badge_active: "VERIFIED CANDIDATE PROFILE",
+      cover_title: "Assessment & Security Career Portfolio",
+      cover_subtitle: "Detailed evaluation of technical skills, security findings methodology, and bug hunting capabilities for Ahmed Sobhi Hassan.",
+      btn_hire: "Hire / Contact Me",
+      btn_cv: "Download CV (PDF)",
+      stat_1: "Ethical & Methodology Focused",
+      stat_2: "Top 10 Web Vulnerabilities",
+      stat_3: "Available Worldwide",
+      nav_1: "01. About & Profile",
+      nav_2: "02. Methodology & Certs",
+      nav_3: "03. Technical Findings",
+      nav_4: "04. Writeups & Research",
+      nav_5: "05. Timeline & Background",
+      nav_6: "06. Contact Details",
+      sec1_title: "About Me & Professional Profile",
+      sec1_p1: "I am a dedicated, results-oriented Junior Penetration Tester and Bug Hunter driven by a strong passion for web application security, offensive security research, and vulnerability assessments. My core focus lies in systematically analyzing complex web architectures, identifying critical security flaws before malicious actors can exploit them, and helping organizations fortify their digital infrastructure.",
+      sec1_p2: "Through rigorous hands-on training and lab exercises on platforms like PortSwigger Web Security Academy and TryHackMe, I have developed solid expertise in attack vectors aligned with the OWASP Top 10 framework. I specialize in diagnosing Cross-Site Scripting (XSS), SQL Injection (SQLi), Insecure Direct Object References (IDOR), Broken Access Controls, and CSRF flaws, with a commitment to delivering professional Proof of Concept (PoC) reports and clear remediation guidance.",
+      sec1_box_title: '<i class="fa-solid fa-shield-halved" style="color:var(--verified); margin-right:8px;"></i> Technical Expertise & Core Capabilities',
+      skill_1: "Web Application Penetration Testing",
+      skill_2: "OWASP Top 10 Vulnerability Assessment",
+      skill_3: "Burp Suite Professional & Community",
+      skill_4: "Bug Bounty Hunting & Security Research",
+      skill_5: "Python & Bash Script Automation",
+      skill_6: "Linux Security Suite (Kali Linux)",
+      skill_7: "PoC Writing & Technical Reports",
+      skill_8: "Network Reconnaissance & Nmap",
+      sec2_title: "Methodology & Certifications",
+      sec2_lede: "A structured, standards-driven approach to offensive security and penetration testing, following PTES and OWASP testing frameworks.",
+      phase1_lbl: "PHASE 01",
+      phase1_title: "Reconnaissance & Asset Discovery",
+      phase1_desc: "Subdomain enumeration, technology stack fingerprinting, endpoint mapping, and uncovering hidden attack surfaces using automated tools and manual techniques.",
+      phase2_lbl: "PHASE 02",
+      phase2_title: "Vulnerability Analysis & Identification",
+      phase2_desc: "Analyzing web application logic, input fields, state parameters, and API endpoints against OWASP Top 10 security standards.",
+      phase3_lbl: "PHASE 03",
+      phase3_title: "Exploitation & Impact Demonstration",
+      phase3_desc: "Controlled payload crafting to safely validate security vulnerabilities without disrupting operational continuity or integrity.",
+      phase4_lbl: "PHASE 04",
+      phase4_title: "PoC Reporting & Patch Recommendations",
+      phase4_desc: "Documenting step-by-step reproduction steps, severity rating (CVSS), root-cause analysis, and actionable mitigation guidance for developers.",
+      courses_title: "Hands-on Labs & Specialized Training",
+      course1_desc: "Advanced practical labs covering XSS, SQLi, IDOR, CSRF, Access Control, and Business Logic flaws",
+      course1_badge: "COMPLETED LABS",
+      course2_desc: "Network Security, Web Hacking, Privilege Escalation, and Offensive Security Methodologies",
+      course2_badge: "COMPLETED PATH",
+      sec3_title: "Technical Findings & Vulnerability Reports",
+      sec3_lede: "Representative samples of security vulnerabilities analyzed and documented during web security audits and bug hunting.",
+      badge_critical: "HIGH / CRITICAL",
+      badge_high: "HIGH",
+      badge_med: "MEDIUM",
+      v1_title: "Insecure Direct Object Reference (IDOR) in User API",
+      v1_desc: "Modifying request parameters in REST API endpoints allowed unauthorized access to private account data of other users.",
+      v2_title: "Stored Cross-Site Scripting (XSS) in Comment Inputs",
+      v2_desc: "Unsanitized user inputs allowed malicious JavaScript payload execution within administrative review panels.",
+      v3_title: "Cross-Site Request Forgery (CSRF) on Sensitive Actions",
+      v3_desc: "Absence of CSRF protection tokens in profile settings allowed unauthorized state modification via third-party web pages.",
+      v4_title: "Authentication Bypass via Blind SQL Injection",
+      v4_desc: "Time-based and boolean-based blind SQL injection in login parameters allowed database structure extraction.",
+      sec4_title: "Writeups & Security Research",
+      sec4_lede: "Technical articles and vulnerability walkthroughs authored to document security insights and bug hunting techniques.",
+      w1_tag: "RESEARCH WRITEUP",
+      w1_title: "Bypassing Web Application Filters for Stored XSS",
+      w1_desc: "Detailed study on HTML context breaking, payload encoding, and bypassing modern web application firewalls (WAFs).",
+      w2_tag: "METHODOLOGY GUIDE",
+      w2_title: "Systematic IDOR Exploitation in Modern REST APIs",
+      w2_desc: "Analyzing authorization logic, hash identifiers, and automating multi-account testing using Burp Suite tools.",
+      sec5_title: "Timeline & Background",
+      t1_date: "2023 — PRESENT",
+      t1_title: "Bug Hunter & Independent Security Researcher",
+      t1_desc: "Actively assessing target web applications, discovering OWASP vulnerabilities, writing PoC reports, and submitting security findings.",
+      t2_date: "2022 — 2024",
+      t2_title: "Web Security & Penetration Testing Mastery",
+      t2_desc: "Completed intensive hands-on security training across PortSwigger Web Security Academy, TryHackMe, and lab environments.",
+      t3_date: "ACADEMIC FOUNDATION",
+      t3_title: "Computer Science & Systems Security Studies",
+      t3_desc: "Strong background in software fundamentals, networking architecture, Linux systems administration, and database management.",
+      sec6_num: "06. REACH OUT",
+      sec6_title: "Initiate Contact & Verification",
+      sec6_lede: "Interested in hiring Ahmed Sobhi Hassan for a Penetration Testing position, Bug Bounty collaboration, or Security Internship?",
+      footer_copy: "© 2026 Ahmed Sobhi Hassan — Penetration Testing Assessment",
+      footer_status: "STATUS: READY FOR SECURITY OPPORTUNITIES",
+      bot_sub: "Ask me anything about candidate",
+      bot_welcome: "Hello! I am the automated assistant for <strong>Ahmed Sobhi Hassan</strong>. How can I help evaluate his qualifications or provide contact info?",
+      chip_skills: "Skills",
+      chip_vulns: "Vulnerabilities",
+      chip_contact: "Contact Info",
+      btn_send: "Send",
+      input_ph: "Ask a question..."
+    },
+    ar: {
+      btn_lang: "English",
+      hero_terminal_whoami: "أحمد صبحي حسن — Bug Hunter / Junior Penetration Tester",
+      badge_conf: "تقرير تقييم أمني سرّي",
+      badge_active: "ملف مرشَّح مُوثّق",
+      cover_title: "معرض الأعمال والتقييم الأمني المهني",
+      cover_subtitle: "تقييم تفصيلي للمهارات التقنية، منهجية فحص الثغرات، وقدرات Bug Hunting الخاصة بـ أحمد صبحي حسن.",
+      btn_hire: "توظيف / تواصل معي",
+      btn_cv: "تحميل السيرة الذاتية (PDF)",
+      stat_1: "التزام كامل بالمنهجيات والأخلاقيات",
+      stat_2: "OWASP Top 10 ثغرات الويب",
+      stat_3: "متاح للعمل عن بُعد (REMOTE)",
+      nav_1: "01. نبذة عني",
+      nav_2: "02. المنهجية والشهادات",
+      nav_3: "03. الثغرات المكتشفة",
+      nav_4: "04. الشروحات والأبحاث",
+      nav_5: "05. المسيرة المهنية",
+      nav_6: "06. معلومات التواصل",
+      sec1_title: "نبذة عني والملف المهني",
+      sec1_p1: "أنا <strong>Junior Penetration Tester</strong> و <strong>Bug Hunter</strong> شغوف بمجال أمن تطبيقات الويب (Web Security)، والأبحاث الأمنية الهجومية، وفحص الثغرات. يتركز هدفي الأساسي حول التحليل المنهجي للمنشآت البرمجية المعقدة للويب، واكتشاف الثغرات الأمنية الحرجة قبل استغلالها من قِبل المهاجمين، ومساعدة المؤسسات على تعزيز بنيتها التحتية الرقمية.",
+      sec1_p2: "من خلال التدريب العملي المكثف على منصات مثل <strong>PortSwigger Web Security Academy</strong> و <strong>TryHackMe</strong>، اكتسبت خبرة قوية في ثغرات إطار عمل <strong>OWASP Top 10</strong>. أختص بشكل دقيق في تشخيص ثغرات Cross-Site Scripting (XSS)، و SQL Injection (SQLi)، و Insecure Direct Object References (IDOR)، و Broken Access Control، و CSRF، مع الالتزام بتقديم تقارير Proof of Concept (PoC) احترافية وإرشادات معالجة واضحة.",
+      sec1_box_title: '<i class="fa-solid fa-shield-halved" style="color:var(--verified); margin-left:8px;"></i> الخبرات والمهارات التقنية الأساسية',
+      skill_1: "اختبار اختراق تطبيقات الويب (Web PenTesting)",
+      skill_2: "تقييم ثغرات OWASP Top 10",
+      skill_3: "إتقان أدوات Burp Suite Professional & Community",
+      skill_4: "البحث عن الثغرات Bug Bounty Hunting",
+      skill_5: "أتمتة المهام بأكواد Python & Bash",
+      skill_6: "بيئة العمل الحماية Kali Linux",
+      skill_7: "كتابة تقارير PoC وإثبات المفهوم",
+      skill_8: "استكشاف الشبكات وأداة Nmap",
+      sec2_title: "المنهجية والشهادات",
+      sec2_lede: "أسلوب منظم ومتبع وفق أعلى معايير أمن المعلومات واختبار الاختراق الهجومي باتباع أطر عمل PTES و OWASP.",
+      phase1_lbl: "المرحلة 01",
+      phase1_title: "الاستكشاف وجمع المعلومات (Reconnaissance)",
+      phase1_desc: "فحص النطاقات الفرعية (Subdomains)، التعرف على التقنيات المستخدمة، رسم الخرائط للـ Endpoints، واكتشاف أسطح الهجوم الخفية يدوياً وآلياً.",
+      phase2_lbl: "المرحلة 02",
+      phase2_title: "تحليل الثغرات والتعرف عليها",
+      phase2_desc: "تحليل منطق عمل التطبيق، مدخلات المستخدم، معلمات الجلسات، ومدخلات API ومقارنتها بمعايير OWASP Top 10.",
+      phase3_lbl: "المرحلة 03",
+      phase3_title: "استغلال الثغرة وإثبات الأثر (Exploitation)",
+      phase3_desc: "إعداد Payloads مخصصة ومسيطر عليها لتأكيد وجود الخلل الأمني بأمان تام دون التأثير على استقرار النظام.",
+      phase4_lbl: "المرحلة 04",
+      phase4_title: "تقارير PoC وتوصيات الترقيع",
+      phase4_desc: "توثيق خطوات إعادة التكرار خطوة بخطوة، تقييم الخطورة (CVSS)، تحليل السبب الجذر، وتقديم إرشادات علاجية للمطورين.",
+      courses_title: "التدريب العملي والمختبرات المتخصصة",
+      course1_desc: "مختبرات عملية متقدمة تغطي ثغرات XSS, SQLi, IDOR, CSRF, Access Control, و Business Logic",
+      course1_badge: "مختبرات مكتملة",
+      course2_desc: "أمن الشبكات، اختراق الويب، تصعيد الصلاحيات، ومنهجيات الأمن الهجومي",
+      course2_badge: "مسار مكتمل",
+      sec3_title: "الثغرات المكتشفة والتقارير التقنية",
+      sec3_lede: "نماذج من الثغرات الأمنية التي تم تحليلها وتوثيقها خلال تدقيقات أمن الويب والـ Bug Hunting.",
+      badge_critical: "عالي / حرج",
+      badge_high: "عالي",
+      badge_med: "متوسط",
+      v1_title: "Insecure Direct Object Reference (IDOR) في API المستخدمين",
+      v1_desc: "تعديل معلمات الطلب في REST API أدى للوصول غير المصرح به لبيانات الحسابات الشخصية للمستخدمين الآخرين.",
+      v2_title: "Stored Cross-Site Scripting (XSS) في خانات التعليقات",
+      v2_desc: "عدم تصفية مدخلات المستخدم أتاح تنفيذ أكواد JavaScript خبيثة داخل لوحة التحكم الإدارية.",
+      v3_title: "Cross-Site Request Forgery (CSRF) في الإجراءات الحساسة",
+      v3_desc: "غياب رموز CSRF tokens في إعدادات الملف الشخصي أتاح تعديل البيانات عبر صفحات خارجية غير مصرح بها.",
+      v4_title: "تخطي نظام المصادقة عبر Blind SQL Injection",
+      v4_desc: "استغلال ثغرة Blind SQL Injection القائمة على الوقت والمنطق في مدخلات التسجيل لاستخراج بنية قاعدة البيانات.",
+      sec4_title: "الشروحات والأبحاث الأمنية",
+      sec4_lede: "مقالات تقنية وشروحات خطوة بخطوة تم إعدادها لتوثيق الرؤى الأمنية وتقنيات اكتشاف الثغرات.",
+      w1_tag: "بحث أمني",
+      w1_title: "تخطي الفلاتر وجدران الحماية للوصول إلى Stored XSS",
+      w1_desc: "دراسة تفصيلية حول كسر سياق HTML، تشفير الأكواد (Payload Encoding)، وتخطي جدران حماية التطبيقات Modern WAFs.",
+      w2_tag: "دليل المنهجية",
+      w2_title: "استغلال ثغرات IDOR المنهجي في REST APIs الحديثة",
+      w2_desc: "تحليل منطق الصلاحيات، المعرفات المشفرة، وأتمتة اختبار الحسابات المتعددة باستخدام Burp Suite.",
+      sec5_title: "المسيرة المهنية والخبرات",
+      t1_date: "2023 — الحاضر",
+      t1_title: "Bug Hunter وباحث أمني مستقل",
+      t1_desc: "تقييم تطبيقات الويب المستهدفة، اكتشاف ثغرات OWASP، كتابة تقارير PoC، وتقديم بلاغات أمنية احترافية.",
+      t2_date: "2022 — 2024",
+      t2_title: "إتقان أمن الويب واختبار الاختراق",
+      t2_desc: "إتمام تدريبات عملية مكثفة عبر PortSwigger Web Security Academy و TryHackMe والبيئات المعزولة.",
+      t3_date: "الخلفية الأكاديمية",
+      t3_title: "دراسات علوم الحاسب وأمن الأنظمة",
+      t3_desc: "خلفية قوية في أساسيات البرمجيات، معمارية الشبكات، إدارة أنظمة Linux، وقواعد البيانات.",
+      sec6_num: "06. تواصل معي",
+      sec6_title: "بدء التواصل والتوظيف",
+      sec6_lede: "هل ترغب في توظيف أحمد صبحي حسن لوظيفة Penetration Testing، أو التعاون في Bug Bounty، أو تدريب أمني؟",
+      footer_copy: "© 2026 أحمد صبحي حسن — تقييم اختبار الاختراق والأمن السيبراني",
+      footer_status: "الحالة: جاهز لفرص العمل والمهام الأمنية",
+      bot_sub: "اسألني أي سؤال عن المرشح",
+      bot_welcome: "أهلاً بك! أنا المساعد الآلي الخاص بـ <strong>أحمد صبحي حسن</strong>. كيف يمكنني مساعدتك في تقييم خبراته أو تزويدك بمعلومات التواصل؟",
+      chip_skills: "المهارات",
+      chip_vulns: "الثغرات",
+      chip_contact: "معلومات التواصل",
+      btn_send: "إرسال",
+      input_ph: "اكتب سؤالك هنا..."
+    }
+  };
+
+  let currentLang = 'en';
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    const html = document.documentElement;
+    html.setAttribute('lang', currentLang);
+    html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+
+    // Update Language Button Text
+    document.getElementById('langBtnText').innerText = translations[currentLang].btn_lang;
+
+    // Translate marked elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[currentLang][key]) {
+        el.innerHTML = translations[currentLang][key];
+      }
+    });
+
+    // Translate input placeholder
+    const input = document.getElementById('aiInput');
+    if (input) {
+      input.placeholder = translations[currentLang].input_ph;
+    }
+  }
+
+  // Active section scroll tracking
   document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section, .cta');
     const navLinks = document.querySelectorAll('.subnav a');
@@ -877,6 +1221,7 @@
     });
   });
 
+  // AI Chatbot Functions
   function toggleAiPanel() {
     const panel = document.getElementById('aiPanel');
     panel.classList.toggle('open');
@@ -894,7 +1239,7 @@
 
     const body = document.getElementById('aiBody');
 
-    // Add user message
+    // User message
     const userDiv = document.createElement('div');
     userDiv.className = 'ai-msg user';
     userDiv.innerText = txt;
@@ -903,7 +1248,7 @@
     input.value = '';
     body.scrollTop = body.scrollHeight;
 
-    // Generate response
+    // Bot response
     setTimeout(() => {
       const botDiv = document.createElement('div');
       botDiv.className = 'ai-msg bot';
@@ -916,23 +1261,29 @@
   function getAiResponse(q) {
     const query = q.toLowerCase();
 
-    if (query.includes('skill') || query.includes('tool') || query.includes('tech')) {
-      return "Ahmed specializes in Web Application Security, Burp Suite, Nmap, Kali Linux, Python scripting, and finding OWASP Top 10 flaws like XSS, SQLi, IDOR, and CSRF.";
+    if (currentLang === 'ar') {
+      if (query.includes('مهار') || query.includes('خبر') || query.includes('skill') || query.includes('tool') || query.includes('المهارات')) {
+        return "يختص أحمد في أمن تطبيقات الويب (Web Security)، واستخدام أدوات Burp Suite, Nmap, Kali Linux، والأتمتة بلغة Python، واكتشاف ثغرات OWASP Top 10 مثل XSS, SQLi, IDOR, و CSRF.";
+      }
+      if (query.includes('ثغر') || query.includes('bug') || query.includes('bounty') || query.includes('owasp') || query.includes('الثغرات')) {
+        return "يتركز أبحاث الثغرات لديه على ثغرات XSS, SQL Injection, IDOR, والوصول غير المصرح به Broken Access Control.";
+      }
+      if (query.includes('تواصل') || query.includes('اتصل') || query.includes('إيميل') || query.includes('هاتف') || query.includes('contact') || query.includes('whatsapp') || query.includes('معلومات التواصل')) {
+        return "يمكنك التواصل مع أحمد صبحي حسن مباشرة عبر:<br>&bull; <strong>البريد الإلكتروني:</strong> <bdi dir='ltr'>ahmedelshabasy30@gmail.com</bdi><br>&bull; <strong>واتساب / الهاتف:</strong> <a href='https://wa.me/201005728536' target='_blank' rel='noopener' style='color:#5FD3A7; text-decoration:underline;'><bdi dir='ltr'>+20 100 572 8536</bdi></a><br>&bull; <strong>GitHub:</strong> <bdi dir='ltr'>github.com/Shabasy12</bdi>";
+      }
+      return "أحمد صبحي حسن هو Junior Penetration Tester و Bug Hunter متفرغ وجاهز للفرص المتاحة.<br>تواصل معه عبر <bdi dir='ltr'>ahmedelshabasy30@gmail.com</bdi> أو الواتساب <a href='https://wa.me/201005728536' target='_blank' rel='noopener' style='color:#5FD3A7; text-decoration:underline;'><bdi dir='ltr'>+20 100 572 8536</bdi></a>!";
+    } else {
+      if (query.includes('skill') || query.includes('tool') || query.includes('tech')) {
+        return "Ahmed specializes in Web Application Security, Burp Suite, Nmap, Kali Linux, Python scripting, and finding OWASP Top 10 flaws like XSS, SQLi, IDOR, and CSRF.";
+      }
+      if (query.includes('vuln') || query.includes('bug') || query.includes('bounty') || query.includes('owasp')) {
+        return "His primary vulnerability research focuses on Cross-Site Scripting (XSS), SQL Injection (SQLi), Insecure Direct Object References (IDOR), and broken access controls.";
+      }
+      if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('reach') || query.includes('whatsapp')) {
+        return "You can reach Ahmed Sobhi Hassan directly via:<br>&bull; <strong>Email:</strong> <bdi dir='ltr'>ahmedelshabasy30@gmail.com</bdi><br>&bull; <strong>WhatsApp / Phone:</strong> <a href='https://wa.me/201005728536' target='_blank' rel='noopener' style='color:#5FD3A7; text-decoration:underline;'><bdi dir='ltr'>+20 100 572 8536</bdi></a><br>&bull; <strong>GitHub:</strong> <bdi dir='ltr'>github.com/Shabasy12</bdi>";
+      }
+      return "Ahmed Sobhi Hassan is a dedicated Junior Penetration Tester & Bug Hunter. Feel free to contact him at <bdi dir='ltr'>ahmedelshabasy30@gmail.com</bdi> or WhatsApp <a href='https://wa.me/201005728536' target='_blank' rel='noopener' style='color:#5FD3A7; text-decoration:underline;'><bdi dir='ltr'>+20 100 572 8536</bdi></a>!";
     }
-    if (query.includes('vuln') || query.includes('bug') || query.includes('bounty') || query.includes('owasp')) {
-      return "His primary vulnerability research focuses on Cross-Site Scripting (XSS), SQL Injection (SQLi), Insecure Direct Object References (IDOR), and broken access controls.";
-    }
-    if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('reach') || query.includes('mail')) {
-      return "You can reach Ahmed Sobhi Hassan directly via:<br>&bull; <strong>Email:</strong> ahmedelshabasy30@gmail.com<br>&bull; <strong>Phone/WhatsApp:</strong> +20 100 572 8536<br>&bull; <strong>GitHub:</strong> github.com/Shabasy12<br>&bull; <strong>Location:</strong> Alexandria, Egypt";
-    }
-    if (query.includes('cert') || query.includes('course') || query.includes('education') || query.includes('ejpt')) {
-      return "Ahmed has completed extensive hands-on labs in TryHackMe, PortSwigger Academy, and coursework towards eJPT (Junior Penetration Tester) covering network & web security.";
-    }
-    if (query.includes('location') || query.includes('where') || query.includes('egypt')) {
-      return "Ahmed is based in Alexandria, Egypt and is ready for both local on-site opportunities and remote security roles worldwide.";
-    }
-
-    return "Ahmed Sobhi Hassan is a dedicated Junior Penetration Tester & Bug Hunter based in Alexandria, Egypt. Feel free to contact him at <strong>ahmedelshabasy30@gmail.com</strong> or call <strong>+20 100 572 8536</strong>!";
   }
 
   function copyContact() {
@@ -957,7 +1308,7 @@
     toast.style.fontSize = '12px';
     toast.style.zIndex = '9999';
     toast.style.fontWeight = 'bold';
-    toast.innerText = 'Contact info copied to clipboard!';
+    toast.innerText = currentLang === 'ar' ? 'تم نسخ معلومات التواصل إلى الحافظة!' : 'Contact info copied to clipboard!';
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 2500);
   }
