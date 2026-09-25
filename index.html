@@ -987,6 +987,23 @@
   <img id="modalImg" class="img-modal-content" src="" alt="Ahmed Sobhi Hassan - Full View">
 </div>
 <script>
+   // Open Image Modal / Lightbox for Profile Picture
+  function openImageModal() {
+    const avatarImg = document.querySelector('.avatar img');
+    if (!avatarImg) return;
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = avatarImg.src;
+    modal.classList.add('open');
+  }
+
+  // Close Image Modal
+  function closeImageModal(e) {
+    if (!e || e.target.id === 'imageModal' || e.target.classList.contains('img-modal-close')) {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('open');
+    }
+  }
   const translations = {
     en: {
       btn_lang: "العربية",
