@@ -981,7 +981,11 @@
     <button class="ai-send" onclick="sendAiMsg()" data-i18n="btn_send">Send</button>
   </div>
 </div>
-
+<!-- IMAGE PREVIEW LIGHTBOX MODAL -->
+<div id="imageModal" class="img-modal" onclick="closeImageModal(event)">
+  <span class="img-modal-close" onclick="closeImageModal(event)">&times;</span>
+  <img id="modalImg" class="img-modal-content" src="" alt="Ahmed Sobhi Hassan - Full View">
+</div>
 <script>
   const translations = {
     en: {
